@@ -9,8 +9,7 @@ public class AutoGyroReceiver : MonoBehaviour
 {
     [Header("方塊設定")]
     public Transform cube;
-    public float moveSpeed = 10f;
-    public float smoothing = 0.1f;
+    public float rotationSpeed = 5f; // 旋轉平滑度
 
     [Header("UI")]
     public Text statusText;
@@ -25,8 +24,7 @@ public class AutoGyroReceiver : MonoBehaviour
     private Thread discoveryThread;
 
     private Vector3 gyroData = Vector3.zero;
-    private Vector3 targetVelocity = Vector3.zero;
-    private Vector3 currentVelocity = Vector3.zero;
+    private Quaternion targetRotation = Quaternion.identity;
 
     private bool isReceiving = false;
     private string connectedPhone = "";
@@ -154,25 +152,29 @@ public class AutoGyroReceiver : MonoBehaviour
     {
         if (isReceiving && cube != null)
         {
-            // 計算目標速度
-            targetVelocity = new Vector3(
-                gyroData.x * moveSpeed,
-                0,
-                gyroData.y * moveSpeed
-            );
+            // 根據陀螺儀數據計算旋轉
+            // gravity.x = 左右傾斜 (-1到1)
+            // gravity.y = 前後傾斜 (-1到1)
 
-            // 平滑移動
-            currentVelocity = Vector3.Lerp(currentVelocity, targetVelocity, smoothing);
-            cube.Translate(currentVelocity * Time.deltaTime, Space.World);
+            float tiltX = gyroData.x * 90f; // 左右傾斜角度
+            float tiltZ = gyroData.y * 90f; // 前後傾斜角度
+
+            // 計算目標旋轉
+            targetRotation = Quaternion.Euler(tiltZ, 0, -tiltX);
+
+            // 平滑旋轉
+            cube.rotation = Quaternion.Lerp(cube.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
             // 更新UI
             UpdateStatus($"✓ 已連接手機\n{connectedPhone}\n\n接收封包: {packetsReceived}");
 
             UpdateStatus($"陀螺儀:\n" +
                        $"X: {gyroData.x:F2}\n" +
-                       $"Y: {gyroData.y:F2}\n" +
-                       $"Z: {gyroData.z:F2}\n\n" +
-                       $"角色位置:\n{cube.position}");
+                       $"Y: {gyroData.y:F2}\n\n" +
+                       $"方塊旋轉:\n" +
+                       $"X: {cube.rotation.eulerAngles.x:F1}°\n" +
+                       $"Y: {cube.rotation.eulerAngles.y:F1}°\n" +
+                       $"Z: {cube.rotation.eulerAngles.z:F1}°");
         }
     }
 
