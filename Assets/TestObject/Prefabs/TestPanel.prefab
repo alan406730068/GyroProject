@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4711877704123880799}
   - component: {fileID: 4019630908280888279}
   - component: {fileID: 9106332953119169260}
-  - component: {fileID: 7256061606713705093}
   m_Layer: 0
   m_Name: TestPanel
   m_TagString: Untagged
@@ -113,22 +112,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7256061606713705093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8597168653542874153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22dbace03cf552a44a3bda3f7cbcb17e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AutoGyroReceiver
-  cube: {fileID: 487337218669244661}
-  moveSpeed: 10
-  smoothing: 0.1
-  statusText: {fileID: 0}
-  debugText: {fileID: 0}
-  dataPort: 8888
-  discoveryPort: 8889
