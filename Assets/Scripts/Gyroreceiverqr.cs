@@ -61,12 +61,6 @@ public class GyroReceiverQR : MonoBehaviour
 
     void Start()
     {
-        if (boxTransform == null)
-        {
-            var go = GameObject.Find("Box") ?? GameObject.Find("Cube");
-            if (go) boxTransform = go.transform;
-        }
-
         string localIP = GetLocalIPAddress();
         string qrContent = $"GYRO:{localIP}:{dataPort}";
 
@@ -83,8 +77,8 @@ public class GyroReceiverQR : MonoBehaviour
         receiveThread = new Thread(ReceiveLoop) { IsBackground = true };
         receiveThread.Start();
 
-        SetStatus("掃描 QR Code 以連線手機");
-        Debug.Log($"[QR] 內容：{qrContent}");
+        SetStatus("Scan QR Code to connect phone");
+        Debug.Log($"[QR] Content：{qrContent}");
     }
 
     // ── QR Code 生成（使用 QRCoder 函式庫）──────────────────────
@@ -172,7 +166,7 @@ public class GyroReceiverQR : MonoBehaviour
         if (newConn)
         {
             if (qrPanel != null) qrPanel.SetActive(false);
-            SetStatus($"已連線：{phone}");
+            SetStatus($"Connected：{phone}");
         }
 
         if (newData)

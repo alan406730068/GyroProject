@@ -517,6 +517,11 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!4 &515096111 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 487337218669244661, guid: 6df6865a92551c743be4d683d4e9c18a, type: 3}
+  m_PrefabInstance: {fileID: 13694445}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &654330937
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,7 +632,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -297.7}
-  m_SizeDelta: {x: 500, y: 50}
+  m_SizeDelta: {x: 800, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &676802640
 MonoBehaviour:
@@ -854,7 +859,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -140.08}
-  m_SizeDelta: {x: 600, y: 50}
+  m_SizeDelta: {x: 800, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1158194714
 MonoBehaviour:
@@ -1067,7 +1072,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   dataPort: 9999
-  boxTransform: {fileID: 0}
+  boxTransform: {fileID: 515096111}
   sensitivity: 80
   smoothSpeed: 8
   resetKey: 114
